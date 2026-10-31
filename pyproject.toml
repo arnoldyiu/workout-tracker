@@ -1,0 +1,15 @@
+[project]
+name = "workout-tracker"
+version = "0.1.0"
+description = "Log workout sets from the terminal"
+requires-python = ">=3.12"
+
+[project.scripts]
+workout = "workout_tracker.main:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["workout_tracker"]

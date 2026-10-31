@@ -1,0 +1,20 @@
+bench press 8x3
+bench press 8x4
+bench press 8.5x5
+crunches 8
+db curl 9x10
+db curl 9x10
+tricep extensions 13x11
+cable crunches 10x8
+cable crunches 10x8
+bar hang 0x60s
+bar hang 5x60s
+pullup 0x10
+pullup bwx8
+pullup 25x5
+bench 135x8
+bench 137.5x5
+plank 30s
+plank 45s
+plank 20x30s
+bad input
