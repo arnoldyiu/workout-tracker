@@ -12,7 +12,7 @@ python -m workout_tracker [optional: <input file>.txt]
 
 You will need to install `readline` if using Windows. Even then, stdout may not be displayed properly 100% of the time.
 
-If importing a `.txt` file, make sure each line follows the sane format as you would type exercises in regularly.
+If importing a `.txt` file, make sure each line follows the same format as you would type exercises in regularly.
 
 ## Usage
 ```
