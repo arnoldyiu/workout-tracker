@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from .commands import Session, run_command
+from .commands import EndSession, Session, run_command
 from .formatting import format_summary
 from .input_history import setup_input_history
 from .parsing import parse_workout_input
@@ -52,18 +52,25 @@ def main() -> int:
 
     session = Session(interactive=is_user_input)
 
+    save = True
     while True:
         try:
             line = input(prompt).strip()
-        except EOFError:
+            if line.startswith("/"):
+                run_command(session, line)
+            else:
+                log_set(session, line)
+        except EOFError:  # Ctrl+D or end of piped input
             if is_user_input:
                 print()
             break
+        except EndSession as e:  # /end or /close
+            save = e.save
+            break
 
-        if line.startswith("/"):
-            run_command(session, line)
-        else:
-            log_set(session, line)
+    if not save:
+        print("Closed without saving.")
+        return 0
 
     summary = format_summary(session.exercise_history)
     print("\n".join(summary))

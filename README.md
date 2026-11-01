@@ -17,6 +17,6 @@ pull-up bwx10        # bodyweight reps
 plank 60s            # duration
 ```
 
-- Available commands: `/help`, `/undo`, `/show`, `/clear`
+- Available commands: `/help`, `/undo`, `/show`, `/clear`, `/end` (save and exit), `/close` (exit without saving)
 - `Tab` key: complete exercise names/sets based on input history
 - `Ctrl`+`D`: finish and save workout to `logs/YYYYMMDD_HHMM.txt`

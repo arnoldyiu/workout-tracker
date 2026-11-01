@@ -14,7 +14,15 @@ class Session:
 
     interactive: bool
     exercise_history: list[ExerciseRecord] = field(default_factory=list)
-    entered_lines: list[str] = field(default_factory=list)  # valid set lines, for /undo
+    entered_lines: list[str] = field(default_factory=list)
+
+
+class EndSession(Exception):
+    """Raised by /end and /close to stop the main loop."""
+
+    def __init__(self, save: bool):
+        super().__init__()
+        self.save = save
 
 
 @dataclass
@@ -57,12 +65,15 @@ def show_help(session: Session) -> None:
     print(help_text())
 
 
-def end(session: Session) -> None:
-    raise NotImplementedError
+def finish(session: Session) -> None:
+    if not session.entered_lines:
+        print("There's no workout data to save! Use /close to close the program.")
+        return
+    raise EndSession(save=True)
 
 
 def close(session: Session) -> None:
-    raise NotImplementedError
+    raise EndSession(save=False)
 
 
 COMMANDS: dict[str, Command] = {
@@ -70,8 +81,8 @@ COMMANDS: dict[str, Command] = {
     "/show": Command(show, "Show the current workout history"),
     "/undo": Command(undo, "Undo the last set"),
     "/clear": Command(clear, "Clear exercise history"),
-    # "/end": Command(end, "Save the current workout and close the program"),
-    # "/close": Command(close, "Close the program without saving"),
+    "/finish": Command(finish, "Save the current workout and close the program"),
+    "/close": Command(close, "Close the program without saving"),
 }
 
 
