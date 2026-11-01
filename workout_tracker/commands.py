@@ -18,7 +18,7 @@ class Session:
 
 
 class EndSession(Exception):
-    """Raised by /end and /close to stop the main loop."""
+    """Raised when exiting the program via /finish or /close."""
 
     def __init__(self, save: bool):
         super().__init__()
